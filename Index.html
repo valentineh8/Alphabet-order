@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alphabetical Order Checker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+      color: #333;
+    }
+
+    h1 {
+      color: #4e73df;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      max-width: 400px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      background-color: #4e73df;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2e59d9;
+    }
+
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #28a745;
+    }
+
+    .failure {
+      color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <h1>Alphabetical Order Checker</h1>
+  <p>Type a list of words separated by commas to check if they are in alphabetical order.</p>
+  <input type="text" id="wordInput" placeholder="Enter words here..." />
+  <button onclick="checkAlphabeticalOrder()">Check Order</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function checkAlphabeticalOrder() {
+      const input = document.getElementById("wordInput").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      // Split the input string by commas and trim any extra spaces
+      const words = input.split(",").map(word => word.trim());
+
+      // Check if words are in alphabetical order
+      const sortedWords = [...words].sort();
+      if (JSON.stringify(words) === JSON.stringify(sortedWords)) {
+        resultDiv.textContent = "The words are in alphabetical order!";
+        resultDiv.classList.remove("failure");
+        resultDiv.classList.add("success");
+      } else {
+        resultDiv.textContent = "The words are NOT in alphabetical order!";
+        resultDiv.classList.remove("success");
+        resultDiv.classList.add("failure");
+      }
+    }
+  </script>
+</body>
+</html>
